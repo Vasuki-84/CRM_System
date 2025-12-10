@@ -1,6 +1,14 @@
 const mongoose = require("mongoose");
 
 const dealsSchema = mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
+  customerId: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,

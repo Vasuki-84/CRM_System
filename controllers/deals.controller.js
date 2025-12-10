@@ -3,13 +3,31 @@ const dealsModel = require("../model/deals.model");
 // POST Api
 
 const createDeals = async (req, res) => {
-  const { title, description, location, amount, dealStatus } = req.body;
+  const {
+    userId,
+    customerId,
+    title,
+    description,
+    location,
+    amount,
+    dealStatus,
+  } = req.body;
 
   try {
-    if (!title || !description || !location || !amount || !dealStatus) {
+    if (
+      !userId ||
+      !customerId ||
+      !title ||
+      !description ||
+      !location ||
+      !amount ||
+      !dealStatus
+    ) {
       return res.status(400).json({ message: "All fields are required" });
     }
     const newDeal = new dealsModel({
+      userId,
+      customerId,
       title,
       description,
       location,
