@@ -5,10 +5,10 @@ const bcrypt = require("bcryptjs");
 
 // Customer Register API - POST method
 const customerRegister = async (req, res) => {
-  const { customerName, customerNumber, deal, location } = req.body;
+  const { customerName, userId, customerNumber, deal, location } = req.body;
 
   try {
-    if (!customerName || !customerNumber || !deal || !location) {
+    if (!customerName || !userId || !customerNumber || !deal || !location) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -18,6 +18,7 @@ const customerRegister = async (req, res) => {
     const hashedCustomerNumber = await bcrypt.hash(customerNumber, 10);
     const newCustomer = new customerModel({
       customerName,
+      userId,
       customerNumber: hashedCustomerNumber,
       deal,
       location,
@@ -27,6 +28,7 @@ const customerRegister = async (req, res) => {
     const token = jwt.sign(
       {
         customerId: newCustomer._id,
+        userId,
         customerName,
         deal,
         location,

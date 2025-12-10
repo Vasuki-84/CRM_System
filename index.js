@@ -3,13 +3,14 @@ const app = express();
 require("dotenv").config();
 const dbConnection = require("./config/dbConnection.config");
 const userRoute = require("./routes/user.route");
-const customerRoute =require("./routes/customer.route");
-
+const customerRoute = require("./routes/customer.route");
+const dealRoute = require("./routes/deals.route");
 
 dbConnection();
 app.use(express.json());
-app.use("/user",userRoute);
-app.use("/customer",customerRoute);
+app.use("/user", userRoute);
+app.use("/customer", customerRoute);
+app.use("/deals",dealRoute);
 app.listen(process.env.port, () => {
   console.log("Server running on Port", process.env.port);
 });

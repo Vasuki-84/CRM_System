@@ -5,6 +5,10 @@ const customerSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
   customerNumber: {
     type: String,
     required: true,
